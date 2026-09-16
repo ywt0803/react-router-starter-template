@@ -1,16 +1,79 @@
 @import "tailwindcss" source(".");
 
+/* ------------------------------------------------------------------
+ * 主题令牌：等价于 code.html 中 tailwind.config 的 theme.extend
+ * Tailwind v4 通过 @theme 注册设计令牌，生成 bg-surface / text-ink-title 等工具类
+ * ------------------------------------------------------------------ */
 @theme {
+	/* 字体：Geist / Newsreader / JetBrains Mono */
 	--font-sans:
-		"Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+		"Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--font-serif: "Newsreader", Georgia, serif;
+	--font-mono:
+		"JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
+
+	/* surface 调色板 */
+	--color-surface: #f5faf6;
+	--color-surface-card: #ffffff;
+	--color-surface-subtle: #eef6f0;
+	--color-surface-muted: #e3ede5;
+	--color-surface-accent: #d8ebd9;
+
+	/* moss 调色板 */
+	--color-moss-50: #f0fdf4;
+	--color-moss-100: #dcfce7;
+	--color-moss-200: #bbf7d0;
+	--color-moss-500: #10b981;
+	--color-moss-600: #059669;
+	--color-moss-700: #047857;
+	--color-moss-800: #065f46;
+	--color-moss-900: #064e3b;
+	--color-moss-950: #022c22;
+
+	/* ink 调色板 */
+	--color-ink-title: #0d2017;
+	--color-ink-body: #1c3328;
+	--color-ink-muted: #4e6a5c;
+	--color-ink-dim: #7b9487;
+	--color-ink-line: #d7e5db;
 }
 
-html,
-body {
-	@apply bg-white dark:bg-gray-950;
+@layer base {
+	html,
+	body {
+		@apply bg-surface text-ink-body antialiased;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+	}
 
-	@media (prefers-color-scheme: dark) {
-		color-scheme: dark;
+	::selection {
+		background-color: #bbf7d0;
+		color: #064e3b;
+	}
+
+	code,
+	pre,
+	kbd,
+	samp {
+		font-family: var(--font-mono);
+	}
+
+	/* 极简滚动条 */
+	::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: #f5faf6;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #d0e2d5;
+		border-radius: 3px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: #10b981;
 	}
 }
